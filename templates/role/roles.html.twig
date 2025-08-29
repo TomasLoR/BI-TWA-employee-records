@@ -1,0 +1,62 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/roles.css') }}">
+{% endblock %}
+
+{% block headerTitle %}{{ parent() }}{% endblock %}
+
+{% block roles_overview %}<li>Přehled rolí</li>{% endblock %}
+
+{% block content %}
+    <section class="all-roles">
+        <h1>Seznam rolí</h1>
+        <button class="button top-right" onclick="location.href='{{ path('app_role_create')}}'">Vytvořit</button>
+
+        <ul class="role-list">
+            {% for role in roles %}
+                <li>
+                    <button class="button top-right" onclick="location.href='{{ path('app_role_edit', {id: role.id})}}'">Upravit</button>
+                    <p><strong>{{ role.name }}</strong></p>
+                    <p class="description">{{ role.description }}</p>
+                    <ul class="employees">
+                        {% for employee in role.employees %}
+                            <li>{{ employee.name }}</li>
+                        {% else %}
+                            <li>Žádní</li>
+                        {% endfor %}
+                    </ul>
+                    <p>{{ role.isVisible ? 'Viditelná' : 'Neviditelná' }} role</p>
+                </li>
+            {% else %}
+                <li>Žádné role</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <nav class="pagination">
+        <ul>
+            <li>
+                <button class="button"
+                        {% if currentPage > 1 %}
+                            onclick="location.href='{{ path('app_roles', { page: currentPage - 1 }) }}'"
+                        {% endif %}
+                >&lt;
+                </button>
+            </li>
+
+            <li>Stránka {{ currentPage }} z {{ totalPages }}</li>
+
+            <li>
+                <button class="button"
+                        {% if currentPage < totalPages %}
+                            onclick="location.href='{{ path('app_roles', { page: currentPage + 1 }) }}'"
+                        {% endif %}
+                >&gt;
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+{% endblock %}

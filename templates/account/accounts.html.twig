@@ -1,0 +1,97 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/account.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/modal.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/dropdown.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/form.css') }}">
+
+{% endblock %}
+
+{% block headerTitle %}{{ parent() }} - {{ employee.name }}{% endblock %}
+
+{% block content %}
+    <section class="account-list">
+        <h1>Seznam účtů</h1>
+        <button class="button top-right" onclick="location.href='{{ path('app_account_create', {id: employee.id}) }}'">Vytvořit</button>
+        {% for account in accounts %}
+            <article class="account-item" data-account-id="{{ account.id }}">
+                <dl class="account-info">
+                    <dt>Název účtu</dt>
+                    <dd>{{ account.name }}</dd>
+
+                    <dt>Typ účtu</dt>
+                    <dd>{{ account.type.getLabel() }}</dd>
+
+                    <dt>Expirace</dt>
+                    <dd>
+                        <time datetime="{{ account.expiration ? account.expiration|date('Y-m-d') : '-' }}">
+                            {{ account.expiration ? account.expiration|date('d. m. Y') : 'Permanentní' }}
+                        </time>
+                    </dd>
+                </dl>
+                <nav class="dropdown" data-toggle="dropdown">
+                    <button class="dropdown-trigger button">
+                        Modifikovat
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <button class="button" onclick="location.href='{{ path('app_account_edit', {id: account.id}) }}'">Upravit</button>
+                        </li>
+                        <li>
+                            <button class="button"
+                                    data-toggle="modal"
+                                    data-account-id="{{ account.id }}"
+                                    data-employee-id="{{ employee.id }}"
+                                    data-message="Opravdu chcete odstranit účet {{ account.name }}?">
+                                Odstranit
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+            </article>
+        {% else %}
+            <p>Žádné účty</p>
+        {% endfor %}
+    </section>
+
+    <nav class="pagination">
+        <ul>
+            <li>
+                <button class="button"
+                        {% if currentPage > 1 %}
+                            onclick="location.href='{{ path('app_accounts', { id: employee.id }) }}?page={{ currentPage - 1 }}'"
+                        {% endif %}
+                >&lt;
+                </button>
+            </li>
+
+            <li>Stránka {{ currentPage }} z {{ totalPages }}</li>
+
+            <li>
+                <button class="button"
+                        {% if currentPage < totalPages %}
+                            onclick="location.href='{{ path('app_accounts', { id: employee.id }) }}?page={{ currentPage + 1 }}'"
+                        {% endif %}
+                >&gt;
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+    <section class="form-outside" data-rest="{{ path('api_account_create', { 'id': employee.id }) }}">
+        {{- form_start(form, {attr: {'data-method': 'POST'}}) -}}
+        {{- form_widget(form) -}}
+        <button type="submit" class="button">Vytvořit</button>
+        {{- form_end(form) -}}
+    </section>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('javascripts/deleteAccount.js') }}" defer></script>
+    <script src="{{ asset('javascripts/modal.js') }}" defer></script>
+    <script src="{{ asset('javascripts/dropdown.js') }}" defer></script>
+    <script src="{{ asset('javascripts/rest.js') }}" defer></script>
+{% endblock %}

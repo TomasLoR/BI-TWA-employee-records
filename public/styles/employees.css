@@ -1,0 +1,67 @@
+.all-users {
+    position: relative;
+    margin: var(--spacing-large) auto;
+    padding: calc(var(--spacing-large) + 2rem) var(--spacing-large) var(--spacing-large);
+    max-width: 60rem;
+    background: var(--text-color-white);
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--shadow);
+}
+
+.employee-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    gap: var(--spacing-large);
+}
+
+.employee-list > li {
+    padding: var(--spacing-small);
+    border: 0.0625rem solid #ccc;
+    border-radius: var(--border-radius-small);
+    box-shadow: var(--shadow);
+}
+
+.employee-list p {
+    margin: var(--spacing-small) 0;
+}
+
+.roles::before {
+    content: "Funkce: ";
+}
+
+.roles li {
+    display: inline;
+}
+
+.roles li::after {
+    content: ", ";
+}
+
+.roles li:last-child::after {
+    content: "";
+}
+
+.email::before {
+    content: "Email: ";
+}
+
+.employee-list p a {
+    text-decoration: none;
+}
+
+.employee-list p a:hover {
+    text-decoration: underline;
+}
+
+.employee-list img {
+    width: 3rem;
+}
+
+.search-panel {
+    margin: var(--spacing-large) auto;
+    padding: var(--spacing-large);
+    max-width: 60rem;
+    background: var(--text-color-white);
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--shadow);
+}

@@ -1,0 +1,17 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/form.css') }}">
+{% endblock %}
+
+{% block headerTitle %}{{ parent() }}{% endblock %}
+
+{% block content %}
+    <h1>Formulář {{ role ? 'úpravy role ' ~ role.name : 'nové role' }}</h1>
+
+    {{- form_start(form) -}}
+    {{- form_widget(form) -}}
+    <button type="submit" class="button">{{ role ? 'Upravit' : 'Vytvořit' }}</button>
+    {{- form_end(form) -}}
+{% endblock %}

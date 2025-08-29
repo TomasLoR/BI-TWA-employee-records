@@ -1,0 +1,15 @@
+.dropdown {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 4rem;
+}
+
+.dropdown-menu {
+    display: flex;
+    gap: var(--spacing-medium);
+}
+
+.hidden {
+    display: none;
+}

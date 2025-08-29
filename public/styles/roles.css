@@ -1,0 +1,47 @@
+.all-roles {
+    position: relative;
+    margin: var(--spacing-large) auto;
+    padding: calc(var(--spacing-large) + 2rem) var(--spacing-large) var(--spacing-large);
+    max-width: 60rem;
+    background: var(--text-color-white);
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--shadow);
+}
+
+.role-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    gap: var(--spacing-large);
+}
+
+.role-list > li {
+    position: relative;
+    padding: calc(var(--spacing-large) + 1rem) var(--spacing-large) var(--spacing-large);
+    border: 0.0625rem solid #ccc;
+    border-radius: var(--border-radius-small);
+    box-shadow: var(--shadow);
+}
+
+.role-list p {
+    margin: var(--spacing-small) 0;
+}
+
+.description::before {
+    content: "Popis: "
+}
+
+.employees::before {
+    content: "Zaměstnanci: ";
+}
+
+.employees li {
+    display: inline;
+}
+
+.employees li::after {
+    content: ", ";
+}
+
+.employees li:last-child::after {
+    content: "";
+}

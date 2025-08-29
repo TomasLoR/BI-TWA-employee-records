@@ -1,0 +1,26 @@
+.app-info,
+.search-panel,
+.latest-users {
+    margin: var(--spacing-large) auto;
+    padding: var(--spacing-large);
+    max-width: 60rem;
+    background: var(--text-color-white);
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--shadow);
+}
+
+.user-list li {
+    margin: var(--spacing-small) 0;
+}
+
+.user-list a {
+    text-decoration: none;
+}
+
+.user-list a:hover {
+    text-decoration: underline;
+}
+
+.added::before {
+    content: "- Přidán/a ";
+}

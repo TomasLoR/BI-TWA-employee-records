@@ -1,0 +1,42 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/profile.css') }}">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+{% endblock %}
+
+{% block headerTitle %}{{ parent() }}{% endblock %}
+
+{% block content %}
+
+    <h1>{{ employee.name }}</h1>
+    <button class="button top-right" onclick="location.href='{{ path('app_employee_edit', {id: employee.id})}}'">Upravit</button>
+    <img src="{{ asset(employee.photoUrl | default('photos/male.png')) }}" alt="Fotografie {{ employee.name }}"/>
+
+    <h2>Funkce</h2>
+    <ul>
+        {% for role in employee.roles %}
+            {% if role.isVisible %}
+                <li>{{ role.name }}</li>
+            {% endif %}
+        {% else %}
+            <li>Žádné</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Kontaktní údaje</h2>
+    <dl>
+        <dt>Telefon</dt><dd><a href="tel:{{ employee.phone }}">{{ employee.phone }}</a></dd>
+        <dt>Email</dt><dd><a href="mailto:{{ employee.email }}">{{ employee.email }}</a></dd>
+        <dt>Webová stránka</dt><dd><a href="https:{{ employee.website }}" target="_blank">{{ employee.website }}</a></dd>
+    </dl>
+
+    <h2>Popis</h2>
+    <p>{{ employee.description }}</p>
+
+    <h2>Účty</h2>
+    <button class="button" onclick="location.href='{{ path('app_accounts', {id: employee.id}) }}'">Zobrazit účty</button>
+
+
+{% endblock %}

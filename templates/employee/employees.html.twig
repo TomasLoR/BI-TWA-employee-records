@@ -1,0 +1,72 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/employees.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/form.css') }}">
+{% endblock %}
+
+{% block headerTitle %}{{ parent() }}{% endblock %}
+
+{% block overview %}<li>Přehled zaměstnanců</li>{% endblock %}
+
+{% block content %}
+    <section class="all-users">
+        <h1>Seznam zaměstnanců</h1>
+        <button class="button top-right" onclick="location.href='{{ path('app_employee_create')}}'">Vytvořit</button>
+
+        <ul class="employee-list">
+        {% for employee in employees %}
+            <li>
+                <img src="{{ asset(employee.photoUrl | default('photos/male.png')) }}" alt="Fotografie {{ employee.name }}"/>
+                <p><a href="{{ path('app_employee', {id: employee.id}) }}"><strong>{{ employee.name }}</strong></a></p>
+                <ul class="roles">
+                    {% for role in employee.roles %}
+                        {% if role.isVisible %}
+                            <li>{{ role.name }}</li>
+                        {% endif %}
+                    {% else %}
+                        <li>Žádné</li>
+                    {% endfor %}
+                </ul>
+                <p class="email"><a href="mailto:{{ employee.email }}">{{ employee.email }}</a></p>
+            </li>
+        {% else %}
+            <li>Žádní zaměstnanci</li>
+        {% endfor %}
+        </ul>
+    </section>
+
+    <nav class="pagination">
+        <ul>
+            <li>
+                <button class="button"
+                        {% if currentPage > 1 %}
+                            onclick="location.href='{{ path('app_employees', { page: currentPage - 1 }) }}'"
+                        {% endif %}
+                >&lt;
+                </button>
+            </li>
+
+            <li>Stránka {{ currentPage }} z {{ totalPages }}</li>
+
+            <li>
+                <button class="button"
+                        {% if currentPage < totalPages %}
+                            onclick="location.href='{{ path('app_employees', { page: currentPage + 1 }) }}'"
+                        {% endif %}
+                >&gt;
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+    <section class="search-panel">
+        <h2>Vyhledávání zaměstnance</h2>
+        {{- form_start(form) -}}
+        {{- form_widget(form) -}}
+        <button type="submit" class="button" title="Klikněte pro vyhledávání">Vyhledat</button>
+        {{- form_end(form) -}}
+    </section>
+
+{% endblock %}

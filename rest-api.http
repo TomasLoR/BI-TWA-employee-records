@@ -1,0 +1,118 @@
+### Získání všech zaměstnanců
+GET http://localhost:8080/api/employees/
+Accept: application/json
+
+### Získání filtrovaných zaměstnanců
+GET http://localhost:8080/api/employees?search=developer
+Accept: application/json
+
+### Získání konkrétního zaměstance
+GET http://localhost:8080/api/employees/1
+Accept: application/json
+
+### Vytvoření nového zaměstnance
+POST http://localhost:8080/api/employees/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "phone": "123456789",
+  "website": "https://example.com",
+  "description": "An experienced software developer.",
+  "joined_at": "2024-09-25",
+  "photo_url": "photos/male.png"
+}
+
+### Editace (nahrazení) zaměstnance
+PUT http://localhost:8080/api/employees/14
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Jana Nováková",
+  "email": "jana.novakova@example.com",
+  "phone": "987654321",
+  "website": "https://jananovakova.cz",
+  "description": "Vysoce kvalifikovaná backendová vývojářka s odborností v PHP a Symfony.",
+  "joined_at": "2024-11-25",
+  "photo_url": "photos/male.png"
+}
+
+### Editace (aktualizace) zaměstnance
+PATCH http://localhost:8080/api/employees/14
+Content-Type: application/json
+Accept: application/json
+
+{
+  "photo_url": "photos/female.png"
+}
+
+### Přidání existující role konkrétnímu zaměstnanci
+PUT http://localhost:8080/api/employees/14/roles/1
+Accept: application/json
+
+### Odebrání role konkrétnímu zaměstnanci
+DELETE http://localhost:8080/api/employees/14/roles/1
+Accept: application/json
+
+### Zobrazení všch rolí
+GET http://localhost:8080/api/roles
+Accept: application/json
+
+### Vytvoření nové role
+POST http://localhost:8080/api/roles/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Administrátor",
+  "is_visible": false,
+  "description": "Role s plným přístupem ke všem funkcím systému."
+}
+
+### Smazání role
+DELETE http://localhost:8080/api/roles/8
+Accept: application/json
+
+### Získání všech účtů konkrétního zaměstnance
+GET http://localhost:8080/api/employees/1/accounts
+Accept: application/json
+
+### Vytvoření nového účtu konkrétního zaměstnance
+POST http://localhost:8080/api/employees/1/accounts
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "John Doe - Firemni email",
+  "password": "Password123",
+  "type": "user_pass",
+  "expiration": "2025-11-30"
+}
+
+### Editace (nahrazení) účtu
+PUT http://localhost:8080/api/accounts/24
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "John Doe - Firemni email",
+  "password": "SecurePassword123",
+  "type": "card",
+  "expiration": "2026-11-30"
+}
+
+### Editace (aktualizace) účtu
+PATCH http://localhost:8080/api/accounts/24
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Jana Nováková - Firemni email"
+}
+
+### Smazání účtu konkrétního zaměstnance
+DELETE http://localhost:8080/api/employees/1/accounts/26
+Accept: application/json

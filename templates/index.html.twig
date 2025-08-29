@@ -1,0 +1,42 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/index.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/form.css') }}">
+{% endblock %}
+
+{% block headerTitle %}Evidence zaměstnanců{% endblock %}
+
+{% block home %}<li>Domů</li>{% endblock %}
+
+{% block content %}
+    <section class="app-info">
+        <h1>O aplikaci</h1>
+        <p>Tato aplikace slouží k evidenci zaměstnanců a jejich snadnému vyhledávání.</p>
+    </section>
+
+    <section class="search-panel">
+        <h2>Vyhledávání zaměstnance</h2>
+        {{- form_start(form) -}}
+        {{- form_widget(form) -}}
+        <button type="submit" class="button" title="Klikněte pro vyhledávání">Vyhledat</button>
+        {{- form_end(form) -}}
+    </section>
+
+    <section class="latest-users">
+        <h2>Nejnovější zaměstnanci</h2>
+        <ol class="user-list">
+        {% for employee in employees %}
+            <li>
+                <a href="{{ path('app_employee', {id: employee.id}) }}">{{ employee.name }}</a>
+                <time datetime="{{ employee.joinedAt|date('Y-m-d')}}" class="added">
+                    {{ employee.joinedAt|date('d. m. Y')}}
+                </time>
+            </li>
+        {% else %}
+            <li>Žádní zaměstnanci</li>
+        {% endfor %}
+        </ol>
+    </section>
+{% endblock %}

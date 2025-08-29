@@ -1,0 +1,64 @@
+main {
+    position: relative;
+    margin: var(--spacing-large) auto;
+    padding: calc(var(--spacing-large) + 2rem) var(--spacing-large) var(--spacing-large);
+    max-width: 60rem;
+    background: var(--text-color-white);
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--shadow);
+}
+
+main h1 {
+    text-align: center;
+}
+
+main img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+main ul li {
+    margin: 1rem 0;
+}
+
+main dt {
+    font-weight: bold;
+    margin-bottom: 0.1rem;
+}
+
+main dd, p {
+    margin-bottom: var(--spacing-medium);
+}
+
+main dd a[href^="tel:"],
+main dd a[href^="mailto:"],
+main dd a[href^="https:"] {
+    text-decoration: none;
+}
+
+main dd a[href^="tel:"]::after,
+main dd a[href^="mailto:"]::after,
+main dd a[href^="https:"]::after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-left: var(--spacing-small);
+}
+
+main dd a[href^="tel:"]:hover,
+main dd a[href^="mailto:"]:hover,
+main dd a[href^="https:"]:hover {
+    text-decoration: underline;
+}
+
+main dd a[href^="tel:"]::after {
+    content: "\f095";
+}
+
+main dd a[href^="mailto:"]::after {
+    content: "\f0e0";
+}
+
+main dd a[href^="https:"]::after {
+    content: "\f0c1";
+}

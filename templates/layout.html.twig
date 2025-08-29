@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('styles/reset.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('styles/general.css') }}">
+    {% endblock %}
+    <link rel="icon" type="image/png" href="{{ asset('icons/favicon.png') }}">
+</head>
+<body>
+<header>
+    <h1>{% block headerTitle %}{{ title }}{% endblock %}</h1>
+
+    <nav class="navbar">
+        <ul>
+            {% block home %}<li><a href="{{ path('app_index') }}">Domů</a></li>{% endblock %}
+            {% block employees_overview %}<li><a href="{{ path('app_employees') }}">Přehled zaměstnanců</a></li>{% endblock %}
+            {% block roles_overview %}<li><a href="{{ path('app_roles') }}">Přehled rolí</a></li>{% endblock %}
+            {% block contact %}<li><a href="{{ path('app_contact') }}">Kontakt</a></li>{% endblock %} <!-- Chybová stránka dokud nevznikne kontakt stránka -->
+            {% block login %}<li><a href="{{ path('app_login') }}">Log In</a></li>{% endblock %} <!-- Chybová stránka dokud nevznikne log in stránka -->
+            <li>
+                <a href="#" id="lang-cs" class="language-option">CS</a>
+                <a href="#" id="lang-en" class="language-option">EN</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    {% block content %} {% endblock %}
+</main>
+
+<footer>
+    <p>&copy; 2024 Evidence zaměstnanců</p>
+</footer>
+
+{% block javascripts %} {% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+form {
+    display: flex;
+    flex-direction: column;
+    margin: var(--spacing-large) auto;
+    padding: var(--spacing-medium);
+    max-width: 30rem;
+    background: var(--text-color-white);
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--shadow);
+}
+
+form p {
+    text-align: center;
+}
+
+.form-label {
+    font-weight: bold;
+    margin-bottom: var(--spacing-small);
+    color: var(--primary-color);
+}
+
+.form-label > label.required:before {
+    content: "* ";
+    color: red;
+}
+
+.form-field {
+    margin-bottom: var(--spacing-medium);
+}
+
+input:not([type="checkbox"], [type="radio"]),
+textarea,
+select {
+    width: 100%;
+    padding: var(--spacing-small);
+    box-sizing: border-box;
+    border: 0.0625em solid #ccc;
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--shadow);
+    transition: border-color 0.3s;
+}
+
+[type="checkbox"],
+[type="radio"],
+:where([type="checkbox"], [type="radio"]) ~ label {
+    cursor: pointer;
+}
+
+.form-expanded {
+    width: 100%;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+textarea {
+    display: block;
+    resize: vertical;
+}
+
+.form-help {
+    display: block;
+    margin-top: var(--spacing-small);
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.errors {
+    margin-top: var(--spacing-small);
+    padding: var(--spacing-small);
+    border: 0.0625em solid #dc3545;
+    background-color: #f8d7da;
+    border-radius: var(--border-radius-medium);
+    color: #721c24;
+}
+
+.errors li {
+    margin-bottom: var(--spacing-small);
+}
+
+form .button {
+    display: block;
+    margin: 0 auto;
+}

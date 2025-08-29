@@ -1,0 +1,36 @@
+.account-list {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    margin: var(--spacing-large) auto;
+    padding: calc(var(--spacing-large) + 2rem) var(--spacing-large) var(--spacing-large);
+    max-width: 30rem;
+    background: var(--text-color-white);
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--shadow);
+}
+
+.account-info {
+    display: flex;
+    flex-direction: column;
+    margin: var(--spacing-large) auto;
+    margin-bottom: var(--spacing-medium);
+    padding: var(--spacing-medium);
+    width: 70%;
+    border: 0.0625rem solid #ccc;
+    border-radius: var(--border-radius-small);
+    box-shadow: var(--shadow);
+}
+
+.account-info dt {
+    font-weight: bold;
+    margin-bottom: var(--spacing-small);
+}
+
+.account-info dd:not(:last-of-type) {
+    margin-bottom: var(--spacing-large);
+}
+
+.account-info dt::after {
+    content: ":";
+}

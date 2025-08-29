@@ -1,0 +1,35 @@
+{% use "form_div_layout.html.twig" %}
+
+{%- block form_row -%}
+    <label class="form-label">{{- form_label(form) -}}</label>
+    <div class="form-field">
+        {{- form_widget(form) -}}
+        {{- form_help(form) -}}
+        {{- form_errors(form) -}}
+    </div>
+{%- endblock form_row -%}
+
+{%- block form_help -%}
+    {%- if help is not empty -%}
+        <small class="form-help">{{ help }}</small>
+    {%- endif -%}
+{%- endblock form_help -%}
+
+{%- block form_errors -%}
+    {%- if errors|length > 0 -%}
+        <ul class="errors">
+            {%- for error in errors -%}
+                <li>{{ error.message }}</li>
+            {%- endfor -%}
+        </ul>
+    {%- endif -%}
+{%- endblock form_errors -%}
+
+{%- block choice_widget_expanded -%}
+    {%- for child in form -%}
+        <div class="form-expanded">
+            {{- form_widget(child) -}}
+            {{- form_label(child) -}}
+        </div>
+    {%- endfor -%}
+{%- endblock choice_widget_expanded -%}

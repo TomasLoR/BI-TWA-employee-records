@@ -1,0 +1,134 @@
+:root {
+    --primary-color: #4CAF50;
+    --secondary-color: #f0f0f0;
+    --font-family: 'Arial', sans-serif;
+    --text-color-white: #fff;
+    --background-color-light: #f9f9f9;
+    --spacing-small: 0.75rem;
+    --spacing-medium: 1rem;
+    --spacing-large: 1.5rem;
+    --border-radius-small: 0.125rem;
+    --border-radius-medium: 0.5rem;
+    --border-radius-large: 1rem;
+    --shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: var(--font-family);
+    background-color: var(--background-color-light);
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-large);
+    margin-bottom: var(--spacing-small);
+    background-color: var(--primary-color);
+}
+
+h1, h2 {
+    font-weight: bold;
+    margin-bottom: var(--spacing-medium);
+}
+
+h1 {
+    text-align: center;
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+}
+
+.navbar ul li:not(:last-child)::after {
+    content: "|";
+    margin-left: var(--spacing-small);
+    margin-right: var(--spacing-small);
+    color: var(--text-color-white);
+}
+
+.language-option:last-child::before {
+    content: "/";
+    margin-right: 0.3rem;
+    color: var(--text-color-white);
+}
+
+.navbar a {
+    color: var(--text-color-white);
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    color: var(--secondary-color);
+}
+
+time {
+    font-style: italic;
+}
+
+.button {
+    padding: var(--spacing-small);
+    background-color: var(--primary-color);
+    color: var(--text-color-white);
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.top-right {
+    position: absolute;
+    top: var(--spacing-small);
+    right: var(--spacing-small);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--spacing-large);
+    margin-bottom: var(--spacing-large);
+}
+
+.pagination li {
+    display: inline;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    padding: var(--spacing-small);
+    background-color: var(--primary-color);
+    color: var(--text-color-white);
+}
+
+strong {
+    font-weight: bold;
+}
+
+@media screen and (max-width: 40rem) {
+    .navbar ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar ul li {
+        margin-bottom: var(--spacing-small);
+    }
+
+    .navbar ul li:not(:last-child)::after {
+        content: "";
+        margin-left: 0;
+        margin-right: 0;
+
+    }
+}
